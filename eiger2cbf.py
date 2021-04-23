@@ -4,7 +4,10 @@ import os.path
 import db_lib
 from daq_utils import getBlConfig
 
-collection_id, row_index = sys.argv[0:2]
+collection_id, start_index, end_index, seq_num = sys.argv[0:4]
+start_index = int(start_index)
+end_index = int(end_index)
+seq_num = int(seq_num)
 cbf_comm = getBlConfig('cbf_comm')
 
 request = db_lib.getRequestByID(collection_id)
@@ -18,10 +21,7 @@ hdf_row_file_pattern = f'{hdf_sample_data_pattern}{int(float(seq_num))}_master.h
 cbf_conversion_pattern = os.path.join(cbfDir, f'{prefix}_{row_index}_')
 cbf_pattern = cbf_conversion_pattern + "*.cbf"
 
-startIndex = (row_index*row_cell_count) + 1
-endIndex = startIndex+row_cell_count-1
-
-logger.debug(directory, prefix, row_cell_count, hdf_sample_data_pattern, hdf_row_file_pattern, cbf_conversion_pattern, cbf_pattern, startIndex, endIndex)
+print(directory, prefix, row_cell_count, hdf_sample_data_pattern, hdf_row_file_pattern, cbf_conversion_pattern, cbf_pattern, start_index, end_index)
 os.makedirs(os.path.join(directory, 'cbf'))
-command_string = "{cbf_comm} {hdf_row_file_pattern} {startIndex}:{endIndex} {cbf_conversion_pattern}"
+command_string = "{cbf_comm} {hdf_row_file_pattern} {start_index}:{end_index} {cbf_conversion_pattern}"
 os.system(command_string)
