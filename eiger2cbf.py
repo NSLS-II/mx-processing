@@ -16,6 +16,7 @@ from daq_utils import getBlConfig
 collection_id, start_index, end_index, sweep_start, seq_num = sys.argv[1:6]
 start_index = int(start_index)
 end_index = int(end_index)
+sweep_start = int(sweep_start)
 seq_num = int(seq_num)
 cbf_comm = getBlConfig('cbfComm')
 if len(sys.argv) > 6:
@@ -24,7 +25,10 @@ else:
     active_only = True
 request = db_lib.getRequestByID(collection_id, active_only)
 directory = request["request_obj"]["directory"]
-prefix = request["request_obj"]["file_prefix"]
+if request["request_obj"]["protocol"] == "raster":
+    prefix = f'{request["request_obj"]["file_prefix"]}_Raster'
+else:
+    prefix = request["request_obj"]["file_prefix"]
 row_cell_count = request["request_obj"]["rasterDef"]["rowDefs"][0]["numsteps"]
 
 hdf_sample_data_pattern = os.path.join(directory, f'{prefix}_')
@@ -36,7 +40,6 @@ else:
     cbf_conversion_pattern = os.path.join(cbf_dir, f'{prefix}_')
 cbf_pattern = cbf_conversion_pattern + "*.cbf"
 
-print(directory, prefix, row_cell_count, hdf_sample_data_pattern, hdf_row_file_pattern, cbf_conversion_pattern, cbf_pattern, start_index, end_index)
-os.makedirs(cbr_dir)
-command_string = "{cbf_comm} {hdf_row_file_pattern} {start_index}:{end_index} {cbf_conversion_pattern}"
-os.system(command_string)
+os.makedirs(cbf_dir)
+comm_s = f"{cbf_comm} {hdf_row_file_pattern} {start_index}:{end_index} {cbf_conversion_pattern}"
+os.system(comm_s)
