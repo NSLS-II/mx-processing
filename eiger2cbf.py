@@ -27,6 +27,8 @@ request = db_lib.getRequestByID(collection_id, active_only)
 directory = request["request_obj"]["directory"]
 if request["request_obj"]["protocol"] == "raster":
     prefix = f'{request["request_obj"]["file_prefix"]}_Raster'
+elif request["request_obj"]["protocol"] in ("ednaCol", "characterize")
+    prefix = f'ref-{request["request_obj"]["file_prefix"]}'
 else:
     prefix = request["request_obj"]["file_prefix"]
 row_cell_count = request["request_obj"]["rasterDef"]["rowDefs"][0]["numsteps"]
