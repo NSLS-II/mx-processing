@@ -1,22 +1,26 @@
 #$/usr/bin/env python3
 #convert a diffraction image in cbf format to a jpeg, then shrink it - for ISPyB
+#input parameters - collection_id (uuid) and optional active_only flag - if set, will also search non-active collections
+
 import os
 import os.path
 import sys
 import db_lib
-import daq_utils
 from daq_utils import getBlConfig
 
-collection_id = sys.argv[0:1]
+collection_id = sys.argv[1]
+if len(sys.argv) > 2:
+    active_only = False
+else:
+    active_only = True
 
-result = db_lib.getRequestByID(collection_id)
-result_obj = result['result_obj']
-request_obj = result_obj['requestObj']
+result = db_lib.getRequestByID(collection_id, active_only)
+request_obj = result['request_obj']
 directory = request_obj["directory"]
 file_prefix = request_obj['file_prefix']
-base_path = request_obj["base_path"]
-visit_name = daq_utils.getVisitName()
-jpeg_directory = os.path.join(visit_name, "jpegs", directory[directory.find(visit_name)+len(visit_name):len(directory)])
+base_path = request_obj["basePath"]
+visit_name = request_obj["visit_name"]
+jpeg_directory = os.path.join(visit_name, "jpegs", directory[directory.find(visit_name)+len(visit_name)+1:len(directory)])
 full_jpeg_directory = os.path.join(base_path, jpeg_directory)
 
 cbf_dir = directory
