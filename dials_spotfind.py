@@ -46,7 +46,7 @@ if (dials_tuneResoFlag):
 if (daq_utils.beamline == "amx"):
     dials_comm_with_params.append(f"min_spot_size={dials_tuneMinSpotSize}")
 full_dials_command = ' '.join(dials_comm_with_params)
-logger.info('dials spotfinder command: %s' % dials_comm_with_params) 
+print('dials spotfinder command: %s' % dials_comm_with_params) 
 
 request = db_lib.getRequestByID(collection_id, active_only)
 directory = request["request_obj"]["directory"]

@@ -18,5 +18,5 @@ prefix_long = os.path.join(directory, f'{file_prefix}_{seq_num}')
 hdf_file_pattern = f'{prefix_long}_master.h5'
 fast_dp_comm = f'source {os.environ["WRAPPERSDIR"]}fastDPWrap2;{getBlConfig("fastdpComm")}'
 comm_s = f"cd {running_dir};{fast_dp_comm} {hdf_file_pattern}"
-logger.info(f'Fast DP invocation: {comm_s}')
+print(f'Fast DP invocation: {comm_s}')
 os.system(comm_s)

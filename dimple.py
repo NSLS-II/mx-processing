@@ -34,5 +34,5 @@ os.chdir(dimple_running_dir)
 mtz_file = os.path.join(fastdp_running_dir, 'fast_dp.mtz')
 model_file = os.path.join(base_directory, model_pdb_name)
 comm_s = f"{dimple_comm} {running_dir} {mtz_file} {model_file} {dimple_running_dir}"
-logger.info(f'Dimple invocation: {comm_s}')
+print(f'Dimple invocation: {comm_s}')
 os.system(comm_s)
