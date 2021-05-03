@@ -18,6 +18,6 @@ if daq_utils.beamline in ('fmx', 'amx'):
     ednaWrap = f'ednaWrap_beamline'
 else:
     raise Exception('Unknown EDNA host')
-comm_s = f'source {os.environ["WRAPPERSDIR"]}{ednaWrap};cd {dna_directory};{os.environ["LSDCHOME"]}/runEdna.py {cbf1} {cbf2} {transmission_percent} {flux} {xbeam_size} {ybeam_size} {collection_id} {beamline}'
+comm_s = f'source {os.environ["WRAPPERSDIR"]}/{ednaWrap};cd {dna_directory};{os.environ["LSDCHOME"]}/runEdna.py {cbf1} {cbf2} {transmission_percent} {flux} {xbeam_size} {ybeam_size} {collection_id} {beamline}'
 print(f'EDNA call: {comm_s}')
 os.system(comm_s)
