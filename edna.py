@@ -3,7 +3,6 @@ import os
 import sys
 import db_lib
 import daq_utils
-from daq_utils import getBlConfig
 
 dna_directory, collection_id, cbf1, cbf2, transmission_percent, flux, xbeam_size, ybeam_size = sys.argv[1:9]
 if len(sys.argv)>8:
@@ -14,7 +13,7 @@ else:
 result = db_lib.getRequestByID(collection_id, active_only)
 transmission_percent = float(transmission_percent]
 beamline = result['request_obj']['beamline']
-if daq_utils.beamline in ('fmx', 'amx'):
+if beamline in ('fmx', 'amx'):
     ednaWrap = f'ednaWrap_beamline'
 else:
     raise Exception('Unknown EDNA host')

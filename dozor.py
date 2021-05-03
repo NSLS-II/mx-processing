@@ -8,7 +8,6 @@ import os
 import sys
 import os.path
 import db_lib
-from daq_utils import getBlConfig
 
 collection_id, row_index = sys.argv[1:3]
 row_index = int(row_index)
