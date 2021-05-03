@@ -21,17 +21,20 @@ if len(sys.argv) > 3:
 else:
     active_only = True
 
+request = db_lib.getRequestByID(collection_id, active_only)
+beamline = request['beamline']
+
 dials_comm = getBlConfig("dialsComm")
-dials_tune_low_res = getBlConfig(RASTER_TUNE_LOW_RES)
-dials_tune_high_res = getBlConfig(RASTER_TUNE_HIGH_RES)
-dials_tune_ice_ring_flag = getBlConfig(RASTER_TUNE_ICE_RING_FLAG)
-dials_tune_reso_flag = getBlConfig(RASTER_TUNE_RESO_FLAG)
-dials_tune_thresh_flag = getBlConfig("rasterThreshFlag")    
-dials_tune_ice_rRng_width = getBlConfig(RASTER_TUNE_ICE_RING_WIDTH)
-dials_tune_min_spot_size = getBlConfig("rasterDefaultMinSpotSize")
-dials_tune_thresh_kern =  getBlConfig("rasterThreshKernSize")
-dials_tune_thresh_sig_bck =  getBlConfig("rasterThreshSigBckrnd")
-dials_tune_thresh_sig_strong =  getBlConfig("rasterThreshSigStrong")
+dials_tune_low_res = getBlConfig(RASTER_TUNE_LOW_RES, beamline)
+dials_tune_high_res = getBlConfig(RASTER_TUNE_HIGH_RES, beamline)
+dials_tune_ice_ring_flag = getBlConfig(RASTER_TUNE_ICE_RING_FLAG, beamline)
+dials_tune_reso_flag = getBlConfig(RASTER_TUNE_RESO_FLAG, beamline)
+dials_tune_thresh_flag = getBlConfig("rasterThreshFlag", beamline)    
+dials_tune_ice_rRng_width = getBlConfig(RASTER_TUNE_ICE_RING_WIDTH, beamline)
+dials_tune_min_spot_size = getBlConfig("rasterDefaultMinSpotSize", beamline)
+dials_tune_thresh_kern =  getBlConfig("rasterThreshKernSize", beamline)
+dials_tune_thresh_sig_bck =  getBlConfig("rasterThreshSigBckrnd", beamline)
+dials_tune_thresh_sig_strong =  getBlConfig("rasterThreshSigStrong", beamline)
 dials_comm_with_params = []
 if (dials_tuneIceRingFlag):
     dials_comm_with_params.append("ice_rings.filter=true")
@@ -43,7 +46,7 @@ if (dials_tuneThreshFlag):
 if (dials_tuneResoFlag):
     dials_comm_with_params.append(f"spotfinder.filter.d_min={dials_tuneHighRes}")
     dials_comm_with_params.append(f"spotfinder.filter.d_max={dials_tuneLowRes}")
-if (daq_utils.beamline == "amx"):
+if beamline == "amx":
     dials_comm_with_params.append(f"min_spot_size={dials_tuneMinSpotSize}")
 full_dials_command = ' '.join(dials_comm_with_params)
 print('dials spotfinder command: %s' % dials_comm_with_params) 

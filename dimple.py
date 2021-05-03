@@ -12,6 +12,7 @@ else:
     only_active_proc = True
 
 result = db_lib.getRequestByID(collection_id, only_active_proc)
+beamline = result['beamline']
 sample_id = result['sample']
 sample = db_lib.getSampleByID(sample_id)
 try:
@@ -27,7 +28,7 @@ directory = request["request_obj"]["directory"]
 base_directory = request["request_obj"]["basePath"]
 dimple_running_dir = os.path.join(directory, 'dimpleOutput')
 fastdp_running_dir = os.path.join(directory, 'fastDPOutput')
-dimple_comm = f'{getBlConfig("dimpleComm"}'
+dimple_comm = f'{getBlConfig("dimpleComm", beamline)}'
 
 os.makedirs(dimple_running_dir)
 os.chdir(dimple_running_dir)
