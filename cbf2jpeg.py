@@ -1,4 +1,3 @@
-#$/usr/bin/env python3
 #convert a diffraction image in cbf format to a jpeg, then shrink it - for ISPyB
 #input parameters - collection_id (uuid) and optional active_only flag - if set, will also search non-active collections
 
@@ -28,7 +27,7 @@ cbf_dir = directory
 CBF_conversion_pattern = os.path.join(cbf_dir, f'{file_prefix}_')
 JPEG_conversion_pattern = os.path.join(full_jpeg_directory, f'{file_prefix}_')
 
-adxv_comm = os.environ["PROJDIR"] + getBlConfig('adxvComm', beamline)
+adxv_comm = os.path.join(os.environ["PROJDIR"], getBlConfig('adxvComm', beamline))
 comm_s = f'{adxv_comm} -sa {CBF_conversion_pattern}000001.cbf {JPEG_conversion_pattern}0001.jpg'
 os.system(comm_s)
 comm_s = f'convert {JPEG_conversion_pattern}0001.jpeg -resize 10% {JPEG_conversion_pattern}0001.thumb.jpeg'
