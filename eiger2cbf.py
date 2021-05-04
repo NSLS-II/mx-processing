@@ -1,4 +1,3 @@
-#$/usr/bin/env python3
 #eiger2cbf currently designed for rastering rows. could be more general
 # arguments:
 # collection_id - uuid
@@ -28,7 +27,7 @@ beamline = request['beamline']
 directory = request["request_obj"]["directory"]
 if request["request_obj"]["protocol"] == "raster":
     prefix = f'{request["request_obj"]["file_prefix"]}_Raster'
-elif request["request_obj"]["protocol"] in ("ednaCol", "characterize")
+elif request["request_obj"]["protocol"] in ("ednaCol", "characterize"):
     prefix = f'ref-{request["request_obj"]["file_prefix"]}'
 else:
     prefix = request["request_obj"]["file_prefix"]
