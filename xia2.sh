@@ -1,3 +1,6 @@
 #$/bin/bash
-conda activate lsdcServer_2020-1.0
-python runXia2.py "$@"
+export PROJDIR=/GPFS/CENTRAL/xf17id1/skinnerProjectsBackup
+export PYTHONPATH=${PROJDIR}/lsdc:$PYTHONPATH
+export WRAPPERSDIR=${PROJDIR}/wrappers/
+export BEAMLINE_ID='fmx' # TODO required to keep daq_utils happy
+/opt/conda_envs/mx-processing-env/bin/python runXia2.py "$@"
