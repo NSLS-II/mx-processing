@@ -31,7 +31,6 @@ elif request["request_obj"]["protocol"] in ("ednaCol", "characterize"):
     prefix = f'ref-{request["request_obj"]["file_prefix"]}'
 else:
     prefix = request["request_obj"]["file_prefix"]
-row_cell_count = request["request_obj"]["rasterDef"]["rowDefs"][0]["numsteps"]
 
 hdf_sample_data_pattern = os.path.join(directory, f'{prefix}_')
 hdf_row_file_pattern = f'{hdf_sample_data_pattern}{int(float(seq_num))}_master.h5'
