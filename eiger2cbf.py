@@ -23,7 +23,7 @@ else:
     active_only = True
 
 request = db_lib.getRequestByID(collection_id, active_only)
-beamline = request['beamline']
+beamline = request["request_obj"]['beamline']
 directory = request["request_obj"]["directory"]
 if request["request_obj"]["protocol"] == "raster":
     prefix = f'{request["request_obj"]["file_prefix"]}_Raster'

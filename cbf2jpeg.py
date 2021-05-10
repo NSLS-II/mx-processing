@@ -14,7 +14,7 @@ else:
     active_only = True
 
 result = db_lib.getRequestByID(collection_id, active_only)
-beamline = result['beamline']
+beamline = result["request_obj"]['beamline']
 request_obj = result['request_obj']
 directory = request_obj["directory"]
 file_prefix = request_obj['file_prefix']

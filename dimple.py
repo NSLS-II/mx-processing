@@ -12,7 +12,7 @@ else:
     only_active_proc = True
 
 result = db_lib.getRequestByID(collection_id, only_active_proc)
-beamline = result['beamline']
+beamline = result["request_obj"]['beamline']
 sample_id = result['sample']
 sample = db_lib.getSampleByID(sample_id)
 try:
