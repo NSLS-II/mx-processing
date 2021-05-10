@@ -8,7 +8,7 @@ import db_lib
 from daq_utils import getBlConfig
 
 collection_id = sys.argv[1]
-if len(sys.argv) > 2:
+if len(sys.argv) > 1:
     active_only = False
 else:
     active_only = True
