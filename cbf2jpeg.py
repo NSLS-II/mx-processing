@@ -23,12 +23,12 @@ visit_name = request_obj["visit_name"]
 jpeg_directory = os.path.join(visit_name, "jpegs", directory[directory.find(visit_name)+len(visit_name)+1:len(directory)])
 full_jpeg_directory = os.path.join(base_path, jpeg_directory)
 
-cbf_dir = directory
+cbf_dir = os.path.join(directory, 'cbf')
 CBF_conversion_pattern = os.path.join(cbf_dir, f'{file_prefix}_')
 JPEG_conversion_pattern = os.path.join(full_jpeg_directory, f'{file_prefix}_')
 
 adxv_comm = os.path.join(os.environ["PROJDIR"], getBlConfig('adxvComm', beamline))
 comm_s = f'{adxv_comm} -sa {CBF_conversion_pattern}000001.cbf {JPEG_conversion_pattern}0001.jpg'
 os.system(comm_s)
-comm_s = f'convert {JPEG_conversion_pattern}0001.jpeg -resize 10% {JPEG_conversion_pattern}0001.thumb.jpeg'
+comm_s = f'convert {JPEG_conversion_pattern}0001.jpg -resize 10% {JPEG_conversion_pattern}0001.thumb.jpg'
 os.system(comm_s)
