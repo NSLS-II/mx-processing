@@ -28,7 +28,7 @@ request_id = sys.argv[1]
 request = db_lib.getRequestFromID(request_id)
 directory = request["directory"]
 runningDir = os.path.join(directory, "xia2Output")
-os.makedirs(runningDir)
+os.makedirs(runningDir, exist_ok=True)
 os.chdir(runningDir)
 
 filePrefix = request["prefix"]

@@ -30,7 +30,7 @@ dimple_running_dir = os.path.join(directory, 'dimpleOutput')
 fastdp_running_dir = os.path.join(directory, 'fastDPOutput')
 dimple_comm = f'{getBlConfig("dimpleComm", beamline)}'
 
-os.makedirs(dimple_running_dir)
+os.makedirs(dimple_running_dir, exist_ok=True)
 os.chdir(dimple_running_dir)
 mtz_file = os.path.join(fastdp_running_dir, 'fast_dp.mtz')
 model_file = os.path.join(base_directory, model_pdb_name)

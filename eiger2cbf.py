@@ -41,7 +41,7 @@ else:
     cbf_conversion_pattern = os.path.join(cbf_dir, f'{prefix}_')
 cbf_pattern = cbf_conversion_pattern + "*.cbf"
 
-os.makedirs(cbf_dir)
+os.makedirs(cbf_dir, exist_ok=True)
 cbf_comm = getBlConfig('cbfComm', beamline)
 comm_s = f"{cbf_comm} {hdf_row_file_pattern} {start_index}:{end_index} {cbf_conversion_pattern}"
 os.system(comm_s)
