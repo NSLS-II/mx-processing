@@ -35,6 +35,8 @@ else:
 hdf_sample_data_pattern = os.path.join(directory, f'{prefix}_')
 hdf_row_file_pattern = f'{hdf_sample_data_pattern}{int(float(seq_num))}_master.h5'
 cbf_dir = os.path.join(directory, 'cbf')
+if request["request_obj"]["protocol"] in ("ednaCol", "characterize"):
+    cbf_conversion_pattern = os.path.join(cbf_dir, f'{prefix}_{seq_num}_')
 if sweep_start > 0:
     cbf_conversion_pattern = os.path.join(cbf_dir, f'{prefix}_{sweep_start}_')
 else:
