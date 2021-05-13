@@ -37,7 +37,7 @@ hdf_row_file_pattern = f'{hdf_sample_data_pattern}{int(float(seq_num))}_master.h
 cbf_dir = os.path.join(directory, 'cbf')
 if request["request_obj"]["protocol"] in ("ednaCol", "characterize"):
     cbf_conversion_pattern = os.path.join(cbf_dir, f'{prefix}_{seq_num}_')
-if sweep_start > 0:
+elif sweep_start > 0:
     cbf_conversion_pattern = os.path.join(cbf_dir, f'{prefix}_{sweep_start}_')
 else:
     cbf_conversion_pattern = os.path.join(cbf_dir, f'{prefix}_')
@@ -46,4 +46,5 @@ cbf_pattern = cbf_conversion_pattern + "*.cbf"
 os.makedirs(cbf_dir, exist_ok=True)
 cbf_comm = getBlConfig('cbfComm', beamline)
 comm_s = f"{cbf_comm} {hdf_row_file_pattern} {start_index}:{end_index} {cbf_conversion_pattern}"
+print(f'eiger2cbf invocation: {comm_s}')
 os.system(comm_s)
