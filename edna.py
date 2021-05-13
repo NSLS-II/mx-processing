@@ -1,4 +1,3 @@
-#$/usr/bin/env python3
 import os
 import sys
 import db_lib
@@ -11,7 +10,7 @@ else:
     active_only = True
 
 result = db_lib.getRequestByID(collection_id, active_only)
-transmission_percent = float(transmission_percent]
+transmission_percent = float(transmission_percent)
 beamline = result['request_obj']['beamline']
 if beamline in ('fmx', 'amx'):
     ednaWrap = f'ednaWrap_beamline'
