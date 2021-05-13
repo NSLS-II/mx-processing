@@ -24,8 +24,8 @@ try:
 except KeyError:
     model_pdb_name = "model.pdb"
 
-directory = request["request_obj"]["directory"]
-base_directory = request["request_obj"]["basePath"]
+directory = result["request_obj"]["directory"]
+base_directory = result["request_obj"]["basePath"]
 dimple_running_dir = os.path.join(directory, 'dimpleOutput')
 fastdp_running_dir = os.path.join(directory, 'fastDPOutput')
 dimple_comm = f'{getBlConfig("dimpleComm", beamline)}'
