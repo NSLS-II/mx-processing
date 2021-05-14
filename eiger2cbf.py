@@ -37,7 +37,7 @@ hdf_row_file_pattern = f'{hdf_sample_data_pattern}{int(float(seq_num))}_master.h
 cbf_dir = os.path.join(directory, 'cbf')
 if request["request_obj"]["protocol"] in ("ednaCol", "characterize"):
     cbf_conversion_pattern = os.path.join(cbf_dir, f'{prefix}_{seq_num}_')
-elif sweep_start > 0:
+elif sweep_start > 0 or request["request_obj"]["protocol"] == "raster":
     cbf_conversion_pattern = os.path.join(cbf_dir, f'{prefix}_{sweep_start}_')
 else:
     cbf_conversion_pattern = os.path.join(cbf_dir, f'{prefix}_')
