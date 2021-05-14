@@ -54,7 +54,7 @@ print('dials spotfinder command: %s' % dials_comm_with_params)
 directory = request["request_obj"]["directory"]
 file_prefix = request["request_obj"]["file_prefix"]
 if seqNum>1:
-    CBF_pattern = os.path.join(directory, 'cbf', f'{file_prefix}_{seqNum}_*.cbf')
+    CBF_pattern = os.path.join(directory, 'cbf', f'{file_prefix}_Raster_{row_index}_*.cbf')
 else:
     CBF_pattern = os.path.join(directory, 'cbf', f'prefix_{row_index}_*.cbf')
 
