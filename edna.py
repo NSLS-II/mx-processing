@@ -12,10 +12,7 @@ else:
 result = db_lib.getRequestByID(collection_id, active_only)
 transmission_percent = float(transmission_percent)
 beamline = result['request_obj']['beamline']
-if beamline in ('fmx', 'amx'):
-    ednaWrap = f'ednaWrap_{beamline}'
-else:
     raise Exception('Unknown EDNA host')
-comm_s = f'/bin/bash -c \"source {os.environ["WRAPPERSDIR"]}/{ednaWrap};cd {dna_directory};{os.environ["LSDCHOME"]}/runEdna.py {cbf1} {cbf2} {transmission_percent} {flux} {xbeam_size} {ybeam_size} {collection_id} {beamline}\"'
+comm_s = f'cd {dna_directory};{os.environ["LSDCHOME"]}/runEdna.py {cbf1} {cbf2} {transmission_percent} {flux} {xbeam_size} {ybeam_size} {collection_id} {beamline}'
 print(f'EDNA call: {comm_s}')
 os.system(comm_s)
