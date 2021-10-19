@@ -17,7 +17,7 @@ running_dir = os.path.join(directory, 'fastDPOutput')
 file_prefix = result["request_obj"]["file_prefix"]
 prefix_long = os.path.join(directory, f'{file_prefix}_{seq_num}')
 hdf_file_pattern = f'{prefix_long}_master.h5'
-fast_dp_comm = f'{getBlConfig("fastdpComm", beamline)} {hdf_file_pattern}'
-comm_s = f"cd {running_dir};{fast_dp_comm}"
+fast_dp_comm = getBlConfig("fastdpComm", beamline)
+comm_s = f"cd {running_dir};{fast_dp_comm} {hdf_file_pattern}"
 print(f'Fast DP invocation: {comm_s}')
 os.system(comm_s)
