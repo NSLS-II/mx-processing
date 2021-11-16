@@ -28,7 +28,7 @@ directory = result["request_obj"]["directory"]
 base_directory = result["request_obj"]["basePath"]
 dimple_running_dir = os.path.join(directory, 'dimpleOutput')
 fastdp_running_dir = os.path.join(directory, 'fastDPOutput')
-dimple_comm = f'{getBlConfig("dimpleComm", beamline)}'
+dimple_comm = getBlConfig("dimpleComm", beamline)
 
 os.makedirs(dimple_running_dir, exist_ok=True)
 os.chdir(dimple_running_dir)
