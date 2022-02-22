@@ -1,6 +1,4 @@
 #$/bin/bash
-export PROJDIR=/GPFS/CENTRAL/xf17id1/skinnerProjectsBackup
-export PYTHONPATH=${PROJDIR}/lsdc:$PYTHONPATH
-export MONGODB_HOST='xf17id1-lsdcmongo.nsls2.bnl.local'
-export BEAMLINE_ID='fmx' # TODO required to keep daq_utils happy
-/opt/conda_envs/mx-processing-env/bin/python ${PROJDIR}/mx-processing/dimple.py "$@"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )" #https://stackoverflow.com/questions/59895/how-can-i-get-the-source-directory-of-a-bash-script-from-within-the-script-itsel
+source ${SCRIPT_DIR}/config.sh
+${ENV_PATH}/bin/python ${PROCESSINGSCRIPTSDIR}/dimple.py "$@"
