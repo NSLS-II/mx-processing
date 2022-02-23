@@ -1,4 +1,4 @@
-# mx-processing
+# lsdc-processing
 
 Author: Jun Aishima, National Synchrotron Light Source II, Brookhaven National Laboratory, NY
 
