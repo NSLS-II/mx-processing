@@ -1,5 +1,5 @@
 export ENV_PATH="/opt/conda_envs/mx-processing-env"
-export PROJDIR=/GPFS/xf17id2/skinnerProjectsBackup/
+export PROJDIR=/GPFS/CENTRAL/xf17id2/skinnerProjectsBackup/
 export LSDCDIR=${PROJDIR}/lsdc
 export PROCESSINGDIR=${PROJDIR}/mx-processing
 export PYTHONPATH=${LSDCDIR}:$PYTHONPATH
