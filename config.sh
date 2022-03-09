@@ -1,4 +1,4 @@
-export ENV_PATH="/opt/conda_envs/lsdc-processing"
+export ENV_PATH="/opt/conda_envs/lsdc-processing-2022-1.0"
 export PROJDIR=/GPFS/CENTRAL/xf17id2/skinnerProjectsBackup/
 export LSDCDIR=${PROJDIR}/lsdc
 export PROCESSINGDIR=${PROJDIR}/lsdc-processing
