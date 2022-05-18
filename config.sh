@@ -1,6 +1,6 @@
 export ENV_PATH="/opt/conda_envs/lsdc-processing-2022-1.0"
 export PROJDIR=/nsls2/software/mx/daq
-export LSDCDIR=${PROJDIR}/lsdc
+export LSDCDIR=${PROJDIR}/lsdc_amx
 export PROCESSINGSCRIPTSDIR=${PROJDIR}/lsdc-processing
 export PYTHONPATH=${LSDCDIR}:$PYTHONPATH
 export WRAPPERSDIR=${PROJDIR}/wrappers/
