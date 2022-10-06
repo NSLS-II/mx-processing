@@ -2,6 +2,9 @@
 # arguments:
 # collection_id - uuid
 # row_index - number of row to process
+# seqNum    - sequence number of collection
+# per_image - ignore row_index, process all without specifying the row_index or 'Raster' in name - no particular value required
+#             meant to be used for per-image analysis, which coarsely samples images to convert
 
 # note, all of the parameters handling has been moved here to prevent this being passed through the ssh command
 
@@ -12,11 +15,16 @@ import db_lib
 from daq_utils import getBlConfig
 from config_params import * #RASTER_ parameters
 
-collection_id, row_index, seqNum = sys.argv[1:4]
+try:
+    collection_id, row_index, seqNum, per_image = sys.argv[1:5]
+    per_image = True
+except ValueError:
+    collection_id, row_index, seqNum = sys.argv[1:4]
+    per_image = False
 #TODO store beamline and detector so that we don't need to check seqNum
 seqNum = int(seqNum)
 row_index = int(row_index)
-if len(sys.argv) > 3:
+if len(sys.argv) > 5:
     active_only = False
 else:
     active_only = True
@@ -53,7 +61,9 @@ print('dials spotfinder command: %s' % dials_comm_with_params)
 
 directory = request["request_obj"]["directory"]
 file_prefix = request["request_obj"]["file_prefix"]
-if seqNum>1:
+if per_image:
+    CBF_pattern = os.path.join(directory, 'cbf', f'{file_prefix}*.cbf')
+elif seqNum>1:
     CBF_pattern = os.path.join(directory, 'cbf', f'{file_prefix}_Raster_{row_index}_*.cbf')
 else:
     CBF_pattern = os.path.join(directory, 'cbf', f'prefix_{row_index}_*.cbf')
